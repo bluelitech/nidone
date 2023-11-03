@@ -1,0 +1,3 @@
+# Flutter/Dart build artifacts
+**/build/
+.dart_tool/
