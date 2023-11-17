@@ -30,6 +30,9 @@ class HomeStyles {
   static const dialogTitle = TextStyle(
     fontSize: 20.0,
   );
+  static const oyasumiButtonText = TextStyle(
+    fontSize: 24.0,
+  );
 }
 
 class AlarmStyles {

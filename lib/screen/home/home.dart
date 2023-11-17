@@ -45,6 +45,7 @@ class Home extends StatelessWidget {
       Container(
         margin: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         padding: const EdgeInsets.only(bottom: 10.0),
+        color: Colors.grey[850],
         child: Column(children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -78,28 +79,31 @@ class Home extends StatelessWidget {
               itemCount: box.values.length,
               itemBuilder: (context, index) {
                 final AlarmSettings alarmSettings = box.getAt(index)!;
-                return ListTile(
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                  tileColor: Colors.black,
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '${alarmSettings.wakeupHour.toString().padLeft(2, '0')}:${alarmSettings.wakeupMinute.toString().padLeft(2, '0')}',
-                        style: AlarmStyles.wakeupText,
-                      ),
-                      Switch(
-                        value: alarmSettings.isEnabled,
-                        onChanged: (bool newValue) {
-                          alarmSettings.isEnabled = newValue;
-                          alarmSettings.save();
-                        },
-                      ),
-                    ],
+                return Container(
+                  padding: const EdgeInsets.fromLTRB(15.0, 0, 15.0, 0),
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  subtitle: Column(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            '${alarmSettings.wakeupHour.toString().padLeft(2, '0')}:${alarmSettings.wakeupMinute.toString().padLeft(2, '0')}',
+                            style: AlarmStyles.wakeupText,
+                          ),
+                          Switch(
+                            value: alarmSettings.isEnabled,
+                            onChanged: (bool newValue) {
+                              alarmSettings.isEnabled = newValue;
+                              alarmSettings.save();
+                            },
+                          ),
+                        ],
+                      ),
                       Container(
                         margin: const EdgeInsets.only(bottom: 5.0),
                         child: Row(
@@ -169,6 +173,26 @@ class Home extends StatelessWidget {
             ),
           );
         },
+      ),
+      Container(
+        margin: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 30.0),
+        width: double.infinity,
+        height: 70,
+        child: ElevatedButton(
+          onPressed: () {},
+          style: OutlinedButton.styleFrom(
+            side: const BorderSide(
+              color: Colors.white,
+              width: 2.0,
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            backgroundColor: Colors.grey[850],
+            textStyle: HomeStyles.oyasumiButtonText,
+          ),
+          child: const Text('寝る'),
+        ),
       ),
     ]);
   }
