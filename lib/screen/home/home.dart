@@ -3,7 +3,10 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:nidone/constants/constants.dart';
 import 'package:nidone/models/alarm_settings.dart';
 import 'package:nidone/screen/home/add.dart';
+
 import '../../constants/styles.dart';
+import './sleep.dart';
+import '../../widgets/sleeping_button_widget.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -35,6 +38,12 @@ class Home extends StatelessWidget {
           ],
         );
       },
+    );
+  }
+
+  void onPressedSleepingButton(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) => Sleep()),
     );
   }
 
@@ -174,25 +183,11 @@ class Home extends StatelessWidget {
           );
         },
       ),
-      Container(
-        margin: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 30.0),
-        width: double.infinity,
-        height: 70,
-        child: ElevatedButton(
-          onPressed: () {},
-          style: OutlinedButton.styleFrom(
-            side: const BorderSide(
-              color: Colors.white,
-              width: 2.0,
-            ),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            backgroundColor: Colors.grey[850],
-            textStyle: HomeStyles.oyasumiButtonText,
-          ),
-          child: const Text('寝る'),
-        ),
+      SleepingButton(
+        text: '寝る',
+        onPressed: () {
+          onPressedSleepingButton(context);
+        },
       ),
     ]);
   }
